@@ -63,8 +63,10 @@ module.exports = {
         .setDescription(command.subcommands.list.args.id.description)
         .setRequired(true))),
   async execute (interaction) {
-    if (interaction.user.id !== interaction.guild.ownerId) {
-      // checkPerms
+    if (interaction.options.getSubcommand() === command.subcommands.add.name) {
+      if (interaction.user.id !== interaction.guild.ownerId) {
+        // checkPerms
+      }
     }
     interaction.reply({
       content: 'Hello!',

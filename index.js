@@ -8,9 +8,10 @@ const eventsFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 client.commands = new Map()
 client.commands_json = []
+client.activeLicenses = []
 client.cooldowns = new Collection()
-
 Logger.init()
+
 for (const file of eventsFiles) {
   const event = require(`./events/${file}`)
   Logger.info(`[✔] Loaded ${event.name} Event`)
@@ -19,7 +20,7 @@ for (const file of eventsFiles) {
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`)
-  if (!command.enabled) continue
+  if (!command || !command.enabled) continue
   if (command.cooldown && command.cooldown > 0) {
     client.cooldowns.set(command.data.name, new Collection())
   }

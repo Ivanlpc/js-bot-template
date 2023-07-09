@@ -34,7 +34,7 @@ class Logger {
     console.error(COLOR.RED, msg, COLOR.RESET)
     if (!fs.existsSync('./logs')) fs.mkdirSync('./logs')
     const message = `\n[${new Date().toLocaleString()}] [ERROR]: ${msg}`
-    fs.appendFileSync('./latest.txt', message, (e) => {
+    fs.appendFileSync('./logs/latest.txt', message, (e) => {
       if (e) console.log(e)
     })
   }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint:fix": "eslint --fix ./*.js",
-    "dev": "npx nodemon",
+    "dev": "npm i && npx nodemon",
     "start": "npm i --production && node index"
   },
   "repository": {
